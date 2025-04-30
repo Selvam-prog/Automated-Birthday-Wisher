@@ -2,10 +2,14 @@
 import random
 import datetime as dt
 import smtplib
+#From the below mail, the birthday person will receive the wishes #
 my_email = "selvam1921992@gmail.com"
 password = "ucepdltexjywaons"
+
 today_month = dt.datetime.now().month
 today_day = dt.datetime.now().day
+
+#today as tuple which contains the today's month and today's date#
 today = (today_month,today_day)
 
 import pandas
@@ -21,24 +25,13 @@ if today in birthdays_dict:
 
     with smtplib.SMTP(host="smtp.gmail.com",port=587) as connection:
         connection.starttls()
-
-
-
         connection.login(user= my_email,password = password)
         connection.sendmail(
             from_addr=my_email,
             to_addrs=birthdays_dict[today]["email"],
             msg = f"Subject: Happy Birthday Wishes\n\n{contents}"
-
         )
 
-
-
-# 4. Send the letter generated in step 3 to that person's email address.
-# HINT 1: Gmail(smtp.gmail.com), Yahoo(smtp.mail.yahoo.com), Hotmail(smtp.live.com), Outlook(smtp-mail.outlook.com)
-# HINT 2: Remember to call .starttls()
-# HINT 3: Remember to login to your email service with email/password. Make sure your security setting is set to allow less secure apps.
-# HINT 4: The message should have the Subject: Happy Birthday then after \n\n The Message Body.
 
 
 
